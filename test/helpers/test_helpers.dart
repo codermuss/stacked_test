@@ -1,7 +1,10 @@
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:stacked_test/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:stacked_test/app/app.locator.dart';
+import 'package:stacked_test/models/user_model.dart';
+import 'package:stacked_test/services/user_api_service.dart';
+
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -10,13 +13,15 @@ import 'test_helpers.mocks.dart';
   MockSpec<NavigationService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<BottomSheetService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
-  // @stacked-mock-spec
+  MockSpec<UserApiService>(onMissingStub: OnMissingStub.returnDefault),
+// @stacked-mock-spec
 ])
 void registerServices() {
   getAndRegisterNavigationService();
   getAndRegisterBottomSheetService();
   getAndRegisterDialogService();
-  // @stacked-mock-register
+  getAndRegisterUserApiService();
+// @stacked-mock-register
 }
 
 MockNavigationService getAndRegisterNavigationService() {
@@ -69,6 +74,14 @@ MockDialogService getAndRegisterDialogService() {
   return service;
 }
 
+MockUserApiService getAndRegisterUserApiService() {
+  _removeRegistrationIfExists<UserApiService>();
+  final service = MockUserApiService();
+  locator.registerSingleton<UserApiService>(service);
+  when(service.fetchUser())
+      .thenAnswer((i) async => UserModel(name: 'Mock Api Service', age: 1));
+  return service;
+}
 // @stacked-mock-create
 
 void _removeRegistrationIfExists<T extends Object>() {
