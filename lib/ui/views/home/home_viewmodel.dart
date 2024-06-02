@@ -15,8 +15,8 @@ class HomeViewModel extends BaseViewModel {
   UserModel? get userModel => _userModel;
 
   ///*Method to call api service
-  Future<void> init() async {
-    _userModel = await _userApiService.fetchUser();
+  Future<void> init({String? someData}) async {
+    _userModel = await _userApiService.fetchUser(userName: someData);
     print('init:: ${_userModel?.name}');
   }
 }
