@@ -9,14 +9,13 @@ class HomeViewModel extends BaseViewModel {
 
   final UserApiService _userApiService = locator<UserApiService>();
 
-//* Prop
+  //* Prop
   UserModel? _userModel;
 
   UserModel? get userModel => _userModel;
 
-  ///*Method to call api service
-  Future<void> init({String? someData}) async {
-    _userModel = await _userApiService.fetchUser(userName: someData);
+  Future<void> init(String someData) async {
+    _userModel = await _userApiService.fetchUser(someData);
     print('init:: ${_userModel?.name}');
   }
 }

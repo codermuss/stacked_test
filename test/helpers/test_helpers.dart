@@ -74,14 +74,13 @@ MockDialogService getAndRegisterDialogService() {
   return service;
 }
 
-MockUserApiService getAndRegisterUserApiService({String? userName}) {
+MockUserApiService getAndRegisterUserApiService() {
   _removeRegistrationIfExists<UserApiService>();
   final service = MockUserApiService();
   locator.registerSingleton<UserApiService>(service);
-  when(service.fetchUser(userName: userName)).thenAnswer((i) async {
-    print('Mock:: $userName');
-    return UserModel(name: 'Mock Api Service', age: 1);
-  });
+  when(service.fetchUser(any)).thenAnswer(
+    (realInvocation) => Future.value(UserModel(name: "muss", age: 2)),
+  );
   return service;
 }
 // @stacked-mock-create

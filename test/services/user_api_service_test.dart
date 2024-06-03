@@ -13,7 +13,7 @@ void main() {
       test('Fetch User', () async {
         final MockUserApiService mockUserApiService =
             getAndRegisterUserApiService();
-        UserModel? user = await mockUserApiService.fetchUser();
+        UserModel? user = await mockUserApiService.fetchUser('userName');
         expect(1, user?.age);
       });
     });

@@ -1,7 +1,7 @@
 import '../models/user_model.dart';
 
 class UserApiService {
-  Future<UserModel?> fetchUser({String? userName}) async {
+  Future<UserModel?> fetchUser(String userName) async {
     return await Future.delayed(
       const Duration(seconds: 3),
       () {

@@ -678,12 +678,10 @@ class MockDialogService extends _i1.Mock implements _i2.DialogService {
 /// See the documentation for Mockito's code generation for more information.
 class MockUserApiService extends _i1.Mock implements _i7.UserApiService {
   @override
-  _i5.Future<_i8.UserModel?> fetchUser({String? userName}) =>
-      (super.noSuchMethod(
+  _i5.Future<_i8.UserModel?> fetchUser(String? userName) => (super.noSuchMethod(
         Invocation.method(
           #fetchUser,
-          [],
-          {#userName: userName},
+          [userName],
         ),
         returnValue: _i5.Future<_i8.UserModel?>.value(),
         returnValueForMissingStub: _i5.Future<_i8.UserModel?>.value(),
